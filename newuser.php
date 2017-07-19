@@ -14,7 +14,7 @@
         echo "<form action='adduser.php' method='post'>";
     }else{
         echo "<form action='addbar.php' method='post'><br>
-        bar name:<input type='text' name='barname'/><br>
+        bar name (this is what people will search for you by):<input type='text' name='barname'/><br>
         ";
     }
 
