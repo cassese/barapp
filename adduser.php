@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 
     $user = R::find('user', 'username="'.$_POST['username'].'"');
 
-    if(!isset($user->username)){
+    if(empty($user)){
 
         $user = R::dispense('user');
 

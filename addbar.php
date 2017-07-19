@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 
     $bar = R::find('bar', 'username="'.$_POST['username'].'"');
 
-    if(!isset($bar->barname)){
+    if(empty($bar)){
 
         $bar = R::dispense('bar');
 
