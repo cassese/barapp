@@ -23,6 +23,7 @@ if(!isset($_POST['submit'])){
     if(password_verify($_POST['password'],$bar->password)){
 
         $_SESSION["username"] = $bar->username;
+        $_SESSION["barname"] = $bar->barname;
         $_SESSION["id"] = $bar->id;
         $_SESSION["type"] = "bar";
         header("location: index.php");

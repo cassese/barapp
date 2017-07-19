@@ -8,7 +8,7 @@ R::setup( 'mysql:host=localhost;dbname=barapp', 'barapp', 'password' );
 
 if(!isset($_POST['submit'])){
 
-    echo "<form action=\"login.php\" method=\"post\">
+    echo "<form action=\"userlogin.php\" method=\"post\">
 
     username:<input type=\"text\" name=\"username\"/><br>
     password:<input type=\"password\" name=\"password\"/><br>
@@ -24,6 +24,7 @@ if(!isset($_POST['submit'])){
 
         $_SESSION["username"] = $user->username;
         $_SESSION["id"] = $user->id;
+        $_SESSION["type"] = "user";
         header("location: index.php");
 
     }else{
