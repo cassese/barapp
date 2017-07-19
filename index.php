@@ -11,7 +11,7 @@ if(!isset($_SESSION['type'])){
 ?>
 
 <html>
-	
+
 <head>
 	
 <title>home</title>
@@ -26,11 +26,15 @@ if(!isset($_SESSION['type'])){
 
 if($_SESSION['type']=="user"){
 
-    echo "Welcome ".$_SESSION['username']."!";
+    echo "
+    Welcome ".$_SESSION['username']."!<br>
+    <button onclick=\"window.location='logout.php'\">logout</button><br>";
 
 }else if($_SESSION['type']=="bar"){
 
-    echo "Welcome ".$_SESSION['barname']."!"; 
+    echo "
+    Welcome ".$_SESSION['barname']."!<br>
+    <button onclick=\"window.location='logout.php'\">logout</button><br>";
 
 }else{
 
