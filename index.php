@@ -30,7 +30,7 @@ if($_SESSION['type']=="user"){
 
 }else if($_SESSION['type']=="bar"){
 
-    echo "Welcome ".$_SESSION['username']."!"; 
+    echo "Welcome ".$_SESSION['barname']."!"; 
 
 }else{
 
