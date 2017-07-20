@@ -40,7 +40,15 @@ if(!isset($_POST['submit'])){
 
     //displays if they failed to insert the right credentials
     }else{
-        echo "fail";
+        echo "fail<br><br>
+
+        <form action=\"userlogin.php\" method=\"post\">
+
+        username:<input type=\"text\" name=\"username\"/><br>
+        password:<input type=\"password\" name=\"password\"/><br>
+        <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+
+        </form>";
     }
 
 }
