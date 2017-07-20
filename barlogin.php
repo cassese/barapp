@@ -27,29 +27,46 @@ if(!isset($_POST['submit'])){
     //find the bar user with the username they are trying to login as
     $bar = R::findone('bar','username = "'.$_POST["username"].'"');
 
-    //verifys that the password they provided is the same as the password that is stored in the database
-    if(password_verify($_POST['password'],$bar->password)){
+    //checks to see if it found a bar user with that username
+    if(!empty($bar)){
 
-        //if the password is correct then set all the session vars
-        $_SESSION["username"] = $bar->username;
-        $_SESSION["barname"] = $bar->barname;
-        $_SESSION["id"] = $bar->id;
-        $_SESSION["type"] = "bar";
+        //verifys that the password they provided is the same as the password that is stored in the database
+        if(password_verify($_POST['password'],$bar->password)){
 
-        //redirects to the main page
-        header("location: index.php");
+            //if the password is correct then set all the session vars
+            $_SESSION["username"] = $bar->username;
+            $_SESSION["barname"] = $bar->barname;
+            $_SESSION["id"] = $bar->id;
+            $_SESSION["type"] = "bar";
 
-    //displays if they failed to insert the right credentials
+            //redirects to the main page
+            header("location: index.php");
+
+        //displays if they failed to insert the right password
+        }else{
+            echo "fail wrong username or password<br><br>
+
+            <form action=\"barlogin.php\" method=\"post\">
+
+            username:<input type=\"text\" name=\"username\"/><br>
+            password:<input type=\"password\" name=\"password\"/><br>
+            <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+
+            </form>";
+        }
+    //displays if they put in the wrong username
     }else{
-        echo "fail<br><br>
 
-        <form action=\"barlogin.php\" method=\"post\">
+        echo "fail wrong username or password<br><br>
 
-        username:<input type=\"text\" name=\"username\"/><br>
-        password:<input type=\"password\" name=\"password\"/><br>
-        <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+            <form action=\"barlogin.php\" method=\"post\">
 
-        </form>";
+            username:<input type=\"text\" name=\"username\"/><br>
+            password:<input type=\"password\" name=\"password\"/><br>
+            <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+
+            </form>";
+
     }
 
 }

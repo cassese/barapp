@@ -27,28 +27,46 @@ if(!isset($_POST['submit'])){
     //find the user with the username they are trying to login as
     $user = R::findone('user','username = "'.$_POST["username"].'"');
 
-    //verifys that the password they provided is the same as the password that is stored in the database
-    if(password_verify($_POST['password'],$user->password)){
+    //checks to see if it found a bar user with that username
+    if(!empty($user)){
 
-        //if the password is correct then set all the session vars
-        $_SESSION["username"] = $user->username;
-        $_SESSION["id"] = $user->id;
-        $_SESSION["type"] = "user";
+        //verifys that the password they provided is the same as the password that is stored in the database
+        if(password_verify($_POST['password'],$user->password)){
 
-        //redirects to the main page
-        header("location: index.php");
+            //if the password is correct then set all the session vars
+            $_SESSION["username"] = $user->username;
+            $_SESSION["id"] = $user->id;
+            $_SESSION["type"] = "user";
 
-    //displays if they failed to insert the right credentials
+            //redirects to the main page
+            header("location: index.php");
+
+        //displays if they failed to insert the right credentials
+        }else{
+            echo "fail<br><br>
+
+            <form action=\"userlogin.php\" method=\"post\">
+
+            username:<input type=\"text\" name=\"username\"/><br>
+            password:<input type=\"password\" name=\"password\"/><br>
+            <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+
+            </form>";
+        }
+
+    //displays if they put in the wrong username
     }else{
-        echo "fail<br><br>
 
-        <form action=\"userlogin.php\" method=\"post\">
+        echo "fail wrong username or password<br><br>
 
-        username:<input type=\"text\" name=\"username\"/><br>
-        password:<input type=\"password\" name=\"password\"/><br>
-        <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+            <form action=\"userlogin.php\" method=\"post\">
 
-        </form>";
+            username:<input type=\"text\" name=\"username\"/><br>
+            password:<input type=\"password\" name=\"password\"/><br>
+            <input type=\"submit\" name=\"submit\" value=\"login!\"/>
+
+            </form>";
+
     }
 
 }
